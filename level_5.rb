@@ -3,13 +3,15 @@ class Player
     if warrior.feel.enemy?
        warrior.attack!
     elsif
-      if warrior.health < 20 && !taking_damge?(warrior)
+      if warrior.health < 20 && !taking_damage?(warrior)
         warrior.rest!
-    elsif warrior.feel.captive?
-        warrior.rescue!
       end
     else
-      warrior.walk!
+      if warrior.feel.captive?
+        warrior.rescue!
+      else
+        warrior.walk!
+      end
     end
     @health = warrior.health
   end
